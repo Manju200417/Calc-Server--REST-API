@@ -5,8 +5,15 @@ import os
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
+@app.route('/', methods=['POST','GET'])
 def operation():
+    if request.method == 'GET':
+        return (
+            "<b>Welcome to the Calculator REST API Server!</b><br><br>"
+            "This server does not serve a web page.<br>"
+            "To use this API, send a POST request with JSON<br><br>"
+            "<b>Supported operations:</b> add, sub, mul, div"
+        )
     res = request.get_json()
 
     op = res['op']
